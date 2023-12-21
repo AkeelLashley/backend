@@ -4,16 +4,16 @@ import "dotenv/config";
 
 import routes from "./src/routes/index.js";
 import { connectToMongo } from "./src/config/mongoose.js";
-import bodyParser from "body-parser";
 
 const app = express();
 
-app.use(bodyParser.json());
+// Middlewares
+app.use(express.json());
 app.use(cors());
 
 app.use("/", routes);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 try {
   await connectToMongo();
@@ -24,3 +24,5 @@ try {
   console.log("err", err);
   throw err;
 }
+
+
